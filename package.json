@@ -1,7 +1,7 @@
 {
   "name": "ember-cli-bootstrap-tagsinput",
-  "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "version": "0.1.0",
+  "description": "Ember CLI bootstrap taginput component.",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -42,7 +42,8 @@
     "ember-addon"
   ],
   "dependencies": {
-    "ember-cli-babel": "^5.1.6"
+    "ember-cli-babel": "^5.1.6",
+    "ember-cli-htmlbars": "^1.0.3"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"

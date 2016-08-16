@@ -1,0 +1,20 @@
+<h4>Tags input with simple content</h4>
+{{tags-input content=data1}}
+<strong>from ember</strong>
+<br/>
+{{#each data1 as |item|}}
+	-- {{item}}
+{{/each}}
+<br/>
+<strong>Add from outside</strong>
+{{input value=data1_input}}
+<button {{action "data1_add_manual"}}>Add</button>
+<button {{action "data1_remove_manual"}}>Remove</button>
+<hr/>
+<h4>Tags input with store content</h4>
+{{tags-input content=data2 itemText="name" addAction="data2_add" removeAction="data2_remove"}}
+<strong>from ember</strong>
+{{#each data2 as |item|}}
+	-- {{item.name}}
+{{/each}}
+<hr/>
