@@ -7,11 +7,44 @@ export default Ember.Component.extend({
 	itemValue: null,
 
 	addAction:null,
+	source:null,
+
+	substringMatcher(strs){
+	  return function findMatches(q, cb) {
+	    var matches, substrRegex;
+
+	    // an array that will be populated with substring matches
+	    matches = [];
+
+	    // regex used to determine if a string contains the substring `q`
+	    substrRegex = new RegExp(q, 'i');
+
+	    // iterate through the pool of strings and for any string that
+	    // contains the substring `q`, add it to the `matches` array
+	    Ember.$.each(strs, function(i, str) {
+	      if (substrRegex.test(str)) {
+	        matches.push(str);
+	      }
+	    });
+
+	    cb(matches);
+	  };
+	},
+
 
 	setupTagsInput: Ember.on('didRender', function() {
 		let elt = this.$() ;
 		let me = this ;
- 		elt.tagsinput() ;
+		let options = {freeInput : true } ;
+		if(this.get('source')){
+			options['typeaheadjs'] = {
+				source : this.substringMatcher(this.get('source'))
+			}
+		}
+
+
+ 		elt.tagsinput(options) ;
+
 		if(this.get('content') !== null){
 			this.get('content').forEach(function(item){
 				if(me.get('itemText') === null){
@@ -49,6 +82,7 @@ export default Ember.Component.extend({
 		let me = this ;
 		let elt = this.$() ;
 		let tagInput = elt.tagsinput();
+		console.log(tagInput);
 
 
 		if(!tagInput){
