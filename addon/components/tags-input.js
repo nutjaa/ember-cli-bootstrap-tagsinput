@@ -60,7 +60,7 @@ export default Ember.Component.extend({
 
 	 	elt.on('itemAdded', function(event) {
 		  if(me.get('addAction')){
-		  	me.sendAction('addAction', event );
+		  	me.sendAction('addAction', event , me.get('content') );
 		  }else{
 		  	if(! me.get('content').contains(event.item))
 		  		me.get('content').pushObject(event.item);
@@ -69,7 +69,7 @@ export default Ember.Component.extend({
 
 		elt.on('itemRemoved', function(event) {
 		  if(me.get('removeAction')){
-		  	me.sendAction('removeAction', event );
+		  	me.sendAction('removeAction', event  , me.get('content') );
 		  }else{
 		  	me.get('content').removeObject(event.item);
 		  }
