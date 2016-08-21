@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
 	tagName: 'input',
+	attributeBindings: ['class','placeholder'],
 	content: null,
 	itemText: null,
 	itemValue: null,
@@ -82,7 +83,6 @@ export default Ember.Component.extend({
 		let me = this ;
 		let elt = this.$() ;
 		let tagInput = elt.tagsinput();
-		console.log(tagInput);
 
 
 		if(!tagInput){
