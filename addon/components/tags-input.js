@@ -10,6 +10,8 @@ export default Ember.Component.extend({
 	addAction:null,
 	source:null,
 
+	tagClass:'' ,
+
 	substringMatcher(strs){
 	  return function findMatches(q, cb) {
 	    var matches, substrRegex;
@@ -41,6 +43,10 @@ export default Ember.Component.extend({
 			options['typeaheadjs'] = {
 				source : this.substringMatcher(this.get('source'))
 			}
+		}
+
+		if(this.get('tagClass')){
+			options['tagClass'] = this.get('tagClass');
 		}
 
 
