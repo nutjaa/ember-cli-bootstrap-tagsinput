@@ -137,6 +137,6 @@ export default Ember.Component.extend({
 	}),
 
 	teardownTagsInput: Ember.on('willDestroyElement', function() {
-    console.log('Tear Down');
+    this.$().destroy() ;
   })
 });
