@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
 	tagName: 'input',
-	attributeBindings: [ 'placeholder' ],
+	attributeBindings: [ 'placeholder' , 'disabled' ],
 	content: null,
 	itemText: null,
 	itemValue: null,
