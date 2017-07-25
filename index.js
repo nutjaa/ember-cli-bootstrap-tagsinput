@@ -6,7 +6,7 @@ module.exports = {
 
   included: function(app) {
     this._super.included.apply(this, arguments);
-    if (!process.env.EMBER_CLI_FASTBOOT) {
+    if (typeof FastBoot === 'undefined') {
     	app.import(app.bowerDirectory + '/bootstrap-tagsinput/src/bootstrap-tagsinput.js');
     }
     app.import(app.bowerDirectory + '/bootstrap-tagsinput/src/bootstrap-tagsinput.css');
