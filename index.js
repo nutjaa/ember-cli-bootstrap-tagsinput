@@ -20,8 +20,8 @@ module.exports = {
 
     var vendor = this.treePaths.vendor;
 
-    app.import(vendor + '/bootstrap-tagsinput/src/bootstrap-tagsinput.js');
-    app.import(vendor + '/bootstrap-tagsinput/src/bootstrap-tagsinput.css');
+    app.import(vendor + '/bootstrap-tagsinput/bootstrap-tagsinput.js');
+    app.import(vendor + '/bootstrap-tagsinput/bootstrap-tagsinput.css');
   },
 
   treeForVendor: function(vendorTree) {
