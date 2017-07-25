@@ -1,11 +1,6 @@
 /* jshint node: true */
 'use strict';
 
-var Funnel = require('broccoli-funnel');
-var mergeTrees = require('broccoli-merge-trees');
-var map = require('broccoli-stew').map;
-var fs = require('fs');
-var path = require('path');
 
 module.exports = {
   name: 'ember-cli-bootstrap-tagsinput' ,
@@ -20,37 +15,32 @@ module.exports = {
 
     var vendor = this.treePaths.vendor;
 
-    app.import(vendor + '/bootstrap-tagsinput/bootstrap-tagsinput.js');
-    app.import(vendor + '/bootstrap-tagsinput/bootstrap-tagsinput.css');
+    app.import(vendor + '/bootstrap-tagsinput/src/bootstrap-tagsinput.js');
+    app.import(vendor + '/bootstrap-tagsinput/src/bootstrap-tagsinput.css');
   },
 
   treeForVendor: function(vendorTree) {
-    var trees = [];
+    var Funnel = require('broccoli-funnel');
+    var map = require('broccoli-stew').map;
+    var mergeTrees = require('broccoli-merge-trees');
+
+    let trees = [];
 
     if (vendorTree) {
       trees.push(vendorTree);
     }
 
-    var p = path.join(
-      path.dirname(require.resolve('ember-cli-bootstrap-tagsinput')),
-      '../../bower_components/'
-      );
+    trees.push(
+      new Funnel('bower_components/bootstrap-tagsinput', {
+        destDir: '/bootstrap-tagsinput'
+      })
+    );
 
-    console.log(p);
-
-    var bootstrapTagInput =  new Funnel(p, {
-      destDir: 'bootstrap-tagsinput',
-      include: ['src/*.js']
+    return map(mergeTrees(trees), (content, relativePath) => {
+      if (relativePath.match(/\.js$/i)) {
+        return `if (typeof FastBoot === 'undefined') { ${content} }`;
+      }
+      return content;
     });
-
-    bootstrapTagInput = map(bootstrapTagInput,
-        (content) => `if (typeof FastBoot === 'undefined') { ${content} }`);
-
-    trees.push(bootstrapTagInput);
-
-    //console.log(trees);
-
-
-    return mergeTrees(trees);
   }
 };
