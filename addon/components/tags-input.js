@@ -64,6 +64,12 @@ export default Ember.Component.extend({
 			});
 		}
 
+		elt.on('beforeItemAdd',function(event){
+			if(me.get('beforeAddAction')){
+				me.sendAction('beforeAddAction', event, me.get('content'));
+			}
+		});
+
 	 	elt.on('itemAdded', function(event) {
 		  if(me.get('addAction')){
 		  	me.sendAction('addAction', event , me.get('content') );
