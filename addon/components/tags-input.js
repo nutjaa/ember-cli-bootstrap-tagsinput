@@ -39,7 +39,7 @@ export default Component.extend({
 
 
   setupTagsInput: on('didRender', function() {
-    let elt = $();
+    let elt = this.$();
     let me = this;
     let options = {freeInput : true };
     if(this.get('source')){
@@ -76,7 +76,7 @@ export default Component.extend({
       if(me.get('addAction')){
         me.sendAction('addAction', event, me.get('content') );
       }else{
-        if(! me.get('content').contains(event.item))
+        if(! me.get('content').includes(event.item))
           me.get('content').pushObject(event.item);
       }
     });
@@ -142,6 +142,6 @@ export default Component.extend({
   }),
 
   teardownTagsInput: on('willDestroyElement', function() {
-    $().tagsinput('destroy');
+    this.$().tagsinput('destroy');
   })
 });
