@@ -1,11 +1,4 @@
-import Ember from 'ember';
+import Route from "@ember/routing/route";
 
-const { service } = Ember.inject;
-
-export default Ember.Route.extend({
-  setupController: function(controller, model) {
-    controller.setupData() ;
-    this._super(controller, model);
-
-  }
+export default Route.extend({
 });
