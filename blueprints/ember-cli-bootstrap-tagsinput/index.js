@@ -1,10 +1,13 @@
 /* jshint node: true */
+import RSVP from "rsvp"
 
 module.exports = {
   normalizeEntityName: function() {},
 
   afterInstall: function() {
-  	this.addBowerPackageToProject('typeahead.js');
-  	return this.addBowerPackageToProject('bootstrap-tagsinput');
+  	return RSVP.all([
+      this.addBowerPackageToProject('typeahead.js'),
+      this.addBowerPackageToProject('bootstrap-tagsinput')
+    ]);
   }
 };
