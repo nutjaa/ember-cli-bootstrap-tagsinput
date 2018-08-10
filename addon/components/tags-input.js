@@ -88,7 +88,14 @@ export default Component.extend({
         me.get('content').removeObject(event.item);
       }
     });
-    this.$().parent().children('.bootstrap-tagsinput').find('input').attr('size',1);
+
+    const text_input = this.$().parent().children('.bootstrap-tagsinput').find('input')
+    text_input
+      .attr('size',1)
+      .keyup(() => {
+        text_input.attr('size', text_input.val().length)
+      })
+
   }),
 
 
